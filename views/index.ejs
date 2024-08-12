@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Application</title>
+    <style>
+        body{
+            background-color: #6482AD;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main-container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 90vh;;
+        }
+        svg{
+            width: 20%;
+            height: 30vh;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+        h1{
+            font-family: sans-serif;
+            font-size: 7rem;
+            font-weight: 500;
+        }
+        h2{
+            font-weight: 300;
+            font-family: sans-serif;
+            margin-bottom: 20px;
+            font-size: 3rem;
+        }
+        input{
+            width: 50%;
+            font-size: 3rem;
+            text-align: center;
+            opacity: 100%;
+            background-color: #6482AD;
+            border : 0;
+        }
+        input::placeholder {
+            color: #E2DAD6;
+            opacity: 1;
+        }
+        .output{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column ;
+        }
+        .btn {
+            background: #E2DAD6;
+            border-radius: 6px;
+            font-family: Arial;
+            color: black;
+            font-size: 20px;
+            padding: 10px 20px 10px 20px;
+            text-decoration: none;
+            border: 0;
+        }
+        .btn:hover {
+            background: #053d8b;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11.0947 8.02658C11.5476 5.73111 13.5717 4 16 4C18.7614 4 21 6.23858 21 9C21 11.0345 19.7849 12.7852 18.0408 13.5659M11.0947 8.02658C9.24194 8.21766 7.68947 9.4193 7 11C4.6 11.375 3 13.3144 3 15.4137C3 17.9466 5.14903 20 7.8 20L15 20C17.2091 20 19 18.2719 19 16.1402C19 15.1829 18.6388 14.2698 18.0408 13.5659M11.0947 8.02658C11.265 8.00902 11.4378 8 11.6127 8C14.2747 8 16.4504 9.99072 16.6 12.5C17.1583 12.7354 17.6501 13.106 18.0408 13.5659" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <% if(locals.name){ %>
+            <h1><%= name %></h1>
+            <div class="output">
+                <h2><%= main.temp %>F</h2>
+                <h2>HUMIDITY:<%= main.humidity %></h2>
+                <h2><%= weather[0].main %></h2>
+                <h2> <%= weather[0].description %> </h2>
+            </div>
+        <% } else {%>
+            <h1>WEATHER</h1>
+            <h2>Please Enter Longitude and Latitude of the Location</h2>
+        <% } %>
+        <form action="/getweather" method="POST">
+            <input type="text" name="name" placeholder="location">
+            <input type="submit" class="btn">
+        </form>
+    </div>
+</body>
+</html>
